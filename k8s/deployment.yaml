@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: chuanliubuxi
+  labels:
+    app: chuanliubuxi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: chuanliubuxi
+  template:
+    metadata:
+      labels:
+        app: chuanliubuxi
+    spec:
+      containers:
+        - name: app
+          # 使用 CI 推送到 ghcr.io 的镜像
+          image: ghcr.io/yuduguanshan/ChuanLiuBuXi:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+          resources:
+            requests:
+              memory: "32Mi"
+              cpu: "50m"
+            limits:
+              memory: "128Mi"
+              cpu: "200m"

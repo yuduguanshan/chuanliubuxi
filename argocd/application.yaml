@@ -1,0 +1,19 @@
+# 在 Argo CD 所在集群中 apply 此文件，或按此配置在 UI 里创建 Application
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: chuanliubuxi
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/yuduguanshan/ChuanLiuBuXi.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: default
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
