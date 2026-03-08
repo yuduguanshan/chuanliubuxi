@@ -20,6 +20,11 @@ func main() {
 		c.JSON(http.StatusOK, gin.H{"message": "Hello, " + name})
 	})
 
+	// GET 来自 Cloud Agent 的问候
+	r.GET("/cloud", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{"message": "hello，from cloud agent"})
+	})
+
 	// POST 接收 JSON 并回显
 	r.POST("/echo", func(c *gin.Context) {
 		var body map[string]any
